@@ -351,30 +351,156 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include <iostream>
+// using namespace std;
 
+// int main() {
+// 	const int N = 201;	// Be careful. last value is 200, so we need array 201
+// 	int sequence[N], indx;
+
+// 	int occurrence[N * 10] = { 0 };	// possibly i-th value is much less than 10 * i
+
+// 	cin >> indx;
+// 	sequence[0] = 0;
+// 	occurrence[0] = 1;	// use a value as an index in the array
+
+// 	for (int i = 1; i <= indx; i++) {
+// 		int cur = sequence[i - 1] - (i - 1) - 1;
+
+// 		if (cur < 0 || occurrence[cur])
+// 			cur = sequence[i - 1] + (i - 1) + 1;
+
+// 		sequence[i] = cur;
+// 		occurrence[cur] = 1;
+// 	}
+
+// 	cout << sequence[indx];
+
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include <iostream>
+// using namespace std;
 
+// int main() {
+// 	const int N = 199;
+// 	int n, k;
+// 	int arr[N];
+
+// 	cin >> k >> n;
+// 	for (int i = 0; i < n; i++)
+// 		cin >> arr[i];
+
+// 	int max_sum = 0;	// First k values
+// 	int min_index = 0;
+// 	for (int i = 0; i < k; i++)
+// 		max_sum += arr[i];
+
+// 	int sum = max_sum;
+// 	for (int i = k; i < n; i++) {
+// 		// remove element before and add current element. Now they are new k elements
+// 		sum = sum - arr[i - k] + arr[i];
+
+// 		if (sum > max_sum) {
+// 			max_sum = sum;
+// 			min_index = i - (k - 1);
+// 		}
+// 	}
+// 	cout << min_index << " " << min_index + k - 1 << " " << max_sum << "\n";
+// 
+// }
+
+////////////////////////////////////////////////////////////////Or
+
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	const int N = 199;
+// 	int n, k;
+// 	int arr[N];
+
+// 	cin >> k >> n;
+// 	for (int i = 0; i < n; i++)
+// 		cin >> arr[i];
+
+// 	int max_sum = 0;	// First k values
+// 	int min_index = 0;
+// 	for (int i = 0; i < k; i++)
+// 		max_sum += arr[i];
+
+// 	int sum = max_sum;
+// 	for (int i = k; i < n; i++) {
+// 		// remove element before and add current element. Now they are new k elements
+// 		sum = sum - arr[i - k] + arr[i];
+
+// 		if (sum > max_sum) {
+// 			max_sum = sum;
+// 			min_index = i - (k - 1);
+// 		}
+// 	}
+// 	cout << min_index << " " << min_index + k - 1 << " " << max_sum << "\n";
+
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include<iostream>
+using namespace std;
 
+int main() {
+	int n, k;
+	cin >> n >> k;
+	// Let's mark them in 0-based array
+	bool is_removed[199] = { 0 };
+	int last_pos = 0;	// The first position to simulate from it
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// We will just simulate the running.
+	// Start from last killed position
+	// Count K times, but skip these killed positions already
+	for (int t = 0; t < n; ++t) {
+    
+		int remaining_alive = n - t;
+		int current_k = k;
+		// Ignore this if/else condition for now. See bottom of code. It is for handling very large K
+		if (k % remaining_alive == 0)
+			current_k = remaining_alive;
+		else
+			current_k = k % remaining_alive;
 
+		int step = 0;
+		int last_person = -1;
+		while (step < current_k) {
+			if (is_removed[last_pos] == 0)	// not removed. consider it and increment the step
+				last_person = last_pos, step++;
+			last_pos = (last_pos + 1) % n;	// loop back to the array if needed
+		}
+		is_removed[last_person] = 1;
+		cout << last_person + 1 << "\n";
+	}
+	
+	/*
+	 * About the if else. We want to handle when k is so big
+	 * Let's say remaining_alive = 4 and k = 6
+	 * 		This is the same as if k = 2   (6%4 = 2)
+	 *
+	 * 	Similarly
+	 * 	Let's say remaining_alive = 4 and k = 10
+	 * 		This is the same as if k = 2   (10%4 = 2)
+	 *
+	 * 	This is the same as the useless cycles in the clock
+	 * 		4 is same as any 4 + k*12
+	 *
+	 * 	So in general, we don't need to iterate k times
+	 * 		we only need: k % remaining_alive
+	 *
+	 * 	But we need 1 special case handling to k % remaining_alive == 0
+	 * 		In this case we iterate remaining_alive steps
+	 */
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	return 0;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
