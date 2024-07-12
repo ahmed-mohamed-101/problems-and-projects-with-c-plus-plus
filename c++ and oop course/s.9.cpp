@@ -140,28 +140,123 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	string str;
+// 	cin >> str;
+
+// 	for (int i = 0; i < (int) str.size(); i++) {
+// 		if (i != 0 && str[i - 1] != str[i]) // new group, split by space
+// 			cout <<" ";
+// 		cout << str[i];
+// 	}
+// 	return 0;
+// }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	string str;
+// 	cin >> str;
+
+// 	str += "$";	// a small trick to avoid special handling for last group
+
+// 	int group_sz = 1;	// for first letter
+// 	bool is_first_group = true;	// easy mark to avoid early _
+
+// 	for (int i = 1; i < (int) str.size(); i++) {	// start from 1
+// 		if (str[i - 1] != str[i]) { // new group
+// 			if (!is_first_group)
+// 				cout << "_";	// split with previous group
+// 			cout << str[i - 1] << group_sz;
+
+// 			group_sz = 0;
+// 			is_first_group = 0;
+// 		}
+// 		++group_sz;
+// 	}
+// 	return 0;
+// }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	string a, b;
+
+// 	cin >> a >> b;
+
+// 	int sz = a.size();
+
+// 	if (sz < b.size())
+// 		sz = b.size();
+
+// 	int smaller = -1;
+
+// 	for (int i = 0; smaller == -1 && i < sz; ++i) {
+// 		if (a[i] != b[i]) {
+// 			if (a[i] < b[i])
+// 				smaller = 0;
+// 			else
+// 				smaller = 1;
+// 		}
+// 	}
+// 	if (smaller == -1) { // then the first letters are common. Small in length is smaller
+// 		if (a.size() <= b.size())
+// 			smaller = 0;
+// 		else
+// 			smaller = 1;
+// 	}
+// 	if (smaller == 0)
+// 		cout << "YES\n";
+// 	else
+// 		cout << "NO\n";
+
+// 	return 0;
+// }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 using namespace std;
 
 int main() {
-	string str;
-	cin >> str;
+	string num;
 
-	for (int i = 0; i < (int) str.size(); i++) {
-		if (i != 0 && str[i - 1] != str[i]) // new group, split by space
-			cout <<" ";
-		cout << str[i];
+	// Guarantee input: must be 6 digits or more
+	cin >> num;
+
+	int sz = num.size();
+
+	int carry = 0;
+	for (int i = 0; i < sz; ++i) {
+		int digit = num[sz - 1 - i] - '0';
+
+		if (i < 4)
+			digit += 5;			// add 5 in first 4 times
+		digit += carry;		// add any carry
+
+		if (digit >= 10)
+			digit -= 10, carry = 1;
+		else
+			carry = 0;
+
+		num[sz - 1 - i] = digit + '0';
 	}
+	if(carry)
+		cout<<1;
+	cout << num;
+
 	return 0;
 }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
