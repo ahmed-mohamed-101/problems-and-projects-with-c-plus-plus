@@ -160,18 +160,146 @@ answer: 140
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include<iostream>
+using namespace std;
 
+int main() {
+	// Ok to not intialize. we will read immediately
+	int arr[100][100];
+	int n, m ;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < m; ++j) {
+			cin >> arr[i][j];
+		}
+	}
+
+	int q;
+	cin >> q;
+
+	while (q--) {
+		int r1, r2;
+		cin >> r1 >> r2;
+		r1--;
+		r2--;
+
+		bool is_smaller = true;
+		for (int j = 0; j < m; ++j) {
+			if (arr[r1][j] >= arr[r2][j]) {
+				is_smaller = false;
+				break;
+			}
+		}
+
+		if (is_smaller)
+			cout << "YES\n";
+		else
+			cout << "NO\n";
+	}
+
+	return 0;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include<iostream>
+using namespace std;
 
+int main() {
+	int n, upper = 0, lower = 0, val;
+	// No need to create matrix!
+	cin >> n;
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < n; ++j) {
+			cin >> val;
+
+			if (i <= j)
+				lower += val;
+
+			if (i >= j)
+				upper += val;
+		}
+	}
+
+	cout << lower << "\n";
+	cout << upper << "\n";
+	
+
+
+	return 0;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include<iostream>
+using namespace std;
 
+int main() {
+	int arr1[100][100];
+	int arr2[100][100];
+	int n, m;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; ++i)
+		for (int j = 0; j < m; ++j)
+			cin >> arr1[i][j];
+
+	for (int i = 0; i < n; ++i)
+		for (int j = 0; j < m; ++j)
+			arr2[j][i] = arr1[i][j];
+
+	for (int i = 0; i < m; ++i) {
+		for (int j = 0; j < n; ++j)
+			cout << arr2[i][j] << " ";
+		cout << "\n";
+	}
+
+	return 0;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include<iostream>
+using namespace std;
+
+int main() {
+	bool is_prime[100][100] = { 0 };
+	int n, m, val;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; ++i)
+		for (int j = 0; j < m; ++j) {
+			cin >> val;
+
+			if (val <= 1)
+				continue;
+
+			is_prime[i][j] = 1;
+			for (int k = 2; k < val; ++k) {
+				if (val % k == 0) {
+					is_prime[i][j] = 0;
+					break;
+				}
+			}
+		}
+
+	int q, si, sj, rs, cls; // 1 0 2 2
+	cin >> q;
+
+	while (q--) {
+		cin >> si >> sj >> rs >> cls;
+		int cnt = 0;
+
+		for (int i = si; i <= si + rs - 1; ++i)
+			for (int j = sj; j <= sj + cls - 1; ++j)
+				cnt += is_prime[i][j];
+
+		cout << cnt << "\n";
+	}
+
+	return 0;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
