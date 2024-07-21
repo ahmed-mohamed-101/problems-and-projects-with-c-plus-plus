@@ -188,82 +188,82 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// #include<iostream>
-// using namespace std;
-
-// bool is_prime(int num)
-// {
-// 	if(num <= 1)
-// 		return false;
-
-// 	for (int i = 2; i < num; ++i) {
-// 		if(num % i == 0)
-// 			return false;
-// 	}
-// 	return true;
-// }
-
-// int nth_prime(int n)
-// {
-// 	for (int i = 2; ; ++i) {
-// 		if(is_prime(i)) {
-// 			--n;
-// 			if(n == 0)
-// 				return i;
-// 		}
-// 	}
-// 	return -1;
-// }
-
-// int main() {
-// 	for (int i = 1; i < 20; ++i) {
-// 		cout<<nth_prime(i)<<" ";
-// 	}
-
-// 	return 0;
-// }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 #include<iostream>
 using namespace std;
 
-bool starts_with(string input, string pattern, int pos) {
-	if (pos + pattern.size() > input.size())
-		return false;
+bool is_prime(int num)
+{
+	if(num <= 1)
+		return false;	
 
-	for (int i = 0; i < (int) pattern.size(); ++i) {
-		if (pattern[i] != input[i + pos])
+	for (int i = 2; i < num; ++i) {
+		if(num % i == 0)
 			return false;
 	}
 	return true;
 }
 
-string replace_str(string input, string pattern, string to) {
-	string res = "";
-	for (int pos = 0; pos < (int) input.size(); ++pos) {
-		if (starts_with(input, pattern, pos)) {
-			res += to;
-			pos += (int) pattern.size() - 1;	// Move to next right position
-		} else
-			res += input[pos];
+int nth_prime(int n)
+{
+	for (int i = 2; ; ++i) {
+		if(is_prime(i)) {
+			--n;
+			if(n == 0)
+				return i;
+		}
 	}
-
-	return res;
+	return -1;
 }
 
 int main() {
-	cout << starts_with("aabcabaaad", "aa", 0) << "\n";
-	cout << starts_with("aabcabaaad", "aa", 1) << "\n";
-	cout << starts_with("aabcabaaad", "aabcabaaad", 0) << "\n";
-	cout << starts_with("aabcabaaad", "baaad", 5) << "\n";
-	cout << starts_with("aabcabaaad", "baaad", 4) << "\n";
-
-	cout << replace_str("aabcabaaad", "aa", "x") << "\n";
-	cout << replace_str("aabcabaaad", "aa", "aaaa") << "\n";
-	cout << replace_str("aabcabaaad", "aa", "") << "\n";
+	for (int i = 1; i < 20; ++i) {
+		cout<<nth_prime(i)<<" ";
+	}
 
 	return 0;
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include<iostream>
+// using namespace std;
+
+// bool starts_with(string input, string pattern, int pos) {
+// 	if (pos + pattern.size() > input.size())
+// 		return false;
+
+// 	for (int i = 0; i < (int) pattern.size(); ++i) {
+// 		if (pattern[i] != input[i + pos])
+// 			return false;
+// 	}
+// 	return true;
+// }
+
+// string replace_str(string input, string pattern, string to) {
+// 	string res = "";
+// 	for (int pos = 0; pos < (int) input.size(); ++pos) {
+// 		if (starts_with(input, pattern, pos)) {
+// 			res += to;
+// 			pos += (int) pattern.size() - 1;	// Move to next right position
+// 		} else
+// 			res += input[pos];
+// 	}
+
+// 	return res;
+// }
+
+// int main() {
+// 	cout << starts_with("aabcabaaad", "aa", 0) << "\n";
+// 	cout << starts_with("aabcabaaad", "aa", 1) << "\n";
+// 	cout << starts_with("aabcabaaad", "aabcabaaad", 0) << "\n";
+// 	cout << starts_with("aabcabaaad", "baaad", 5) << "\n";
+// 	cout << starts_with("aabcabaaad", "baaad", 4) << "\n";
+
+// 	cout << replace_str("aabcabaaad", "aa", "x") << "\n";
+// 	cout << replace_str("aabcabaaad", "aa", "aaaa") << "\n";
+// 	cout << replace_str("aabcabaaad", "aa", "") << "\n";
+
+// 	return 0;
+// }
 

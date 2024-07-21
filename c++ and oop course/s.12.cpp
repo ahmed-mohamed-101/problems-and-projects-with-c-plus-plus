@@ -207,18 +207,195 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include<iostream>
+// using namespace std;
 
+// int sufix_sum(int arr[], int len, int cnt) {
+// 	if (cnt == 0)
+// 		return 0;
+
+// 	return arr[len - 1] + sufix_sum(arr, len - 1, cnt - 1);
+// }
+
+// int main() {
+// 	int arr[] = { 1, 8, 2, 10, 3 };
+
+// 	cout << sufix_sum(arr, 5, 3);
+
+// 	return 0;
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include<iostream>
+// using namespace std;
 
+
+// int prefix_sum(int arr[], int cnt) {
+// 	if (cnt == 0)
+// 		return 0;
+
+// 	return arr[0] + prefix_sum(arr+1, cnt - 1);
+// }
+
+// int main() {
+// 	int arr[] = { 1, 8, 2, 10, 3 };
+
+// 	cout << prefix_sum(arr, 3)<<"\n";
+
+// 	return 0;
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include<iostream>
+// using namespace std;
 
+// // start & end are indices
+
+// bool is_palindrome_v1(int arr[], int start, int end) {
+// 	if (start >= end)
+// 		return true;
+
+// 	if(arr[start] != arr[end])
+// 		return false;
+
+// 	return is_palindrome_v1(arr, start+1, end-1);
+// }
+
+// bool is_palindrome_v2(int arr[], int end) {
+// 	if (end <= 0)
+// 		return true;
+
+
+// 	if(arr[0] != arr[end])
+// 		return false;
+
+// 	return is_palindrome_v2(arr + 1, end-2); // real -1 and the minust for shifting
+// }
+
+// int main() {
+// 	int arr[] = { 1, 8, 2, 8, 1 };
+
+// 	cout << is_palindrome_v1(arr, 0, 4)<<"\n";
+// 	cout << is_palindrome_v2(arr, 4)<<"\n";
+
+// 	return 0;
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// #include<iostream>
+// using namespace std;
 
+// bool is_prefix(string main, string prefix, int start_pos = 0)
+// {
+// 	if(start_pos == prefix.size())
+// 		return true;
+
+// 	if(main[start_pos] != prefix[start_pos])
+// 		return false;
+
+// 	return is_prefix(main, prefix, start_pos + 1);
+// }
+
+// int main() {
+
+// 	cout << is_prefix("abcdefg", "abcd", 3)<<"\n";
+// 	cout << is_prefix("abcdefg", "", 3)<<"\n";
+// 	cout << is_prefix("abcdefg", "abd", 3)<<"\n";
+
+// 	return 0;
+// }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include<iostream>
+// using namespace std;
+
+// void do_something1(int n) {	// print number digit by digit reversed
+// 	if (n) {
+// 		cout << n % 10;
+// 		do_something1(n / 10);
+// 	}
+// }
+
+// void do_something2(int n) {
+// 	if (n) {
+// 		do_something2(n / 10);
+// 		cout << n % 10;
+// 	}
+// }
+
+// int main() {
+// 	do_something1(123456);
+// 	cout << "\n";
+// 	do_something2(123456);
+
+// 	return 0;
+// }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include<iostream>
+// using namespace std;
+
+// bool is_prime(int m, int cur_test_number = 3) {
+// 	if (m == 2){
+//     cout << m << " ";
+// 		return true;
+//   }
+
+// 	if (m <= 1 || m % 2 == 0)
+// 		return false;
+
+// 	if (m == cur_test_number){
+//     cout << m << " ";
+// 		return true;
+//   }
+// 	if (m % cur_test_number == 0)
+// 		return false;
+
+
+// 	return is_prime(m, cur_test_number + 1);
+// }
+
+// int count_primes(int start, int end) {
+// 	if (start > end)
+// 		return 0;
+
+// 	int result = count_primes(start + 1, end);
+// 	if (is_prime(start))
+// 		result += 1;
+
+// 	return result;
+// }
+
+// int main() {
+//   int count = count_primes(2, 10);
+// 	cout<< endl << count;
+// 	//cout<<count_primes(10, 5000000)<<"\n";
+
+// 	return 0;
+// }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include<iostream>
+using namespace std;
+
+int fib(int n) {
+	if (n <= 1)
+		return 1;
+
+	return fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+	cout << fib(5
+) << "\n";
+
+	return 0;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
